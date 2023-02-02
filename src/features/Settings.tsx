@@ -77,20 +77,20 @@ export const Settings = () => {
           label="Frequency"
           data={[
             {
-              value: 1,
-              label: 1,
+              value: "1",
+              label: "1",
             },
             {
-              value: 15,
-              label: 15,
+              value: "15",
+              label: "15",
             },
             {
-              value: 30,
-              label: 30,
+              value: "30",
+              label: "30",
             },
             {
-              value: 60,
-              label: 60,
+              value: "60",
+              label: "60",
             },
           ]}
           {...getInputProps("frequency")}

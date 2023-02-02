@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { minimizeWindow } from "../lib/utils";
 import { TrackForm } from "./TrackForm/TrackForm";
@@ -12,6 +13,7 @@ import { TrackForm } from "./TrackForm/TrackForm";
 // });
 
 export const Track = () => {
+  const navigate = useNavigate();
   // const form = useForm<IFormValues>({
   //   initialValues: {
   //     track: "",
@@ -50,8 +52,13 @@ export const Track = () => {
   //   minimizeWindow();
   // };
 
+  const minimizeAndReturn = () => {
+    minimizeWindow();
+    navigate("/");
+  }
+
   return (
-    <TrackForm afterTrack={minimizeWindow} onSkip={minimizeWindow} />
+    <TrackForm afterTrack={minimizeAndReturn} onSkip={minimizeAndReturn} />
     // <>
     //   <SimpleGrid cols={2}>
     //     {uniqueTrackings.slice(-6).map((t) => (

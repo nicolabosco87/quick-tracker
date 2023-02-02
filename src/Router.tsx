@@ -9,7 +9,7 @@ import { Settings } from "./features/Settings";
 import { Track } from "./features/Track";
 import { isReminderTime } from "./lib/utils";
 import { state } from "./state/state";
-import { currentMonitor, getAll } from '@tauri-apps/api/window';
+import { currentMonitor, getAll, LogicalPosition, LogicalSize } from '@tauri-apps/api/window';
 import { listen } from '@tauri-apps/api/event';
 
 let reminderInterval: NodeJS.Timer;
@@ -23,44 +23,23 @@ export const Router = () => {
       if (isReminderTime(settings)) {
 
         const windows = getAll();
-
         if (windows.length > 0) {
           const mainWindow = windows[0];
+          const size = new LogicalSize(400, 500);
+          mainWindow.setSize(size);
 
-          mainWindow.setSize({
-            type: "",
-            width: 400,
-            height: 500,
-          })
+          const monitor = await currentMonitor();
 
-        // await Neutralino.window.setSize({
-        //   width: 400,
-        //   height: 500,
-        // })
+          if (monitor) {
+            const position= new LogicalPosition(monitor?.size.width - 400, monitor?.size.height - 500);
+            mainWindow.setPosition(position);
+          }
+          
+          navigate("track-popup");
 
-        const monitor = await currentMonitor();
-
-        // const displays = await Neutralino.computer.getDisplays();
-        // console.log(displays)
-
-        if (monitor) {
-          mainWindow.setPosition({
-            type: "",
-            x: monitor?.size.width - 400,
-            y: monitor?.size.height - 500,
-          })
+          mainWindow.show();
+          mainWindow.setFocus();
         }
-        // await Neutralino.window.move(displays[1].resolution.width - 400, displays[1].resolution.height - 500);
-        
-        navigate("track-popup");
-
-        mainWindow.show();
-        mainWindow.setFocus();
-        // await Neutralino.window.show();
-        // Neutralino.window.focus();
-
-      }
-
       }
     },60000 );
 

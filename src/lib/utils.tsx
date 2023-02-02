@@ -40,9 +40,7 @@ export const calculateReminderMinutes = (settings: TSettings): string[] => {
 
 export const isReminderTime = (settings: TSettings) => {
   const nowTime = dayjs().format("HH:mm");
-
   const reminderMinutes = calculateReminderMinutes(settings);
-
   return reminderMinutes.includes(nowTime);
 };
 

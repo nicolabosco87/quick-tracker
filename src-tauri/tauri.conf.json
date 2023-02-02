@@ -60,7 +60,7 @@
       {
         "fullscreen": false,
         "height": 600,
-        "title": "main",
+        "title": "Quick Tracker",
         "resizable": true,
         "width": 800
       }

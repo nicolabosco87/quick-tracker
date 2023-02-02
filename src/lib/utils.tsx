@@ -1,10 +1,14 @@
+import { getAll } from "@tauri-apps/api/window";
 import dayjs from "dayjs";
 import { TSettings } from "../state/state";
 import { WindowEnhanced } from "../types";
 
 export const minimizeWindow = () => {
-  // (window as WindowEnhanced).electronAPI.minimize();
-  Neutralino.window.hide();
+    const windows = getAll();
+    if (windows.length > 0) {
+      const mainWindow = windows[0];
+      mainWindow.hide();
+    }
 };
 
 export const calculateReminderMinutes = (settings: TSettings): string[] => {

@@ -12,7 +12,7 @@ import { DEFAULT_FREQUENCY } from "../consts";
 import { updateSettings } from "../state/actions";
 import { state, Frequency } from "../state/state";
 interface FormValues {
-  frequency: Frequency;
+  frequency: string;
   ranges: { start: Date; end: Date }[];
 }
 
@@ -31,7 +31,7 @@ export const Settings = () => {
 
   const { insertListItem, getInputProps, removeListItem, values, onSubmit } = useForm<FormValues>({
     initialValues: {
-      frequency: settings?.frequency ?? DEFAULT_FREQUENCY,
+      frequency: String(settings?.frequency) ?? String(DEFAULT_FREQUENCY),
       ranges: settings?.ranges.map((r) => ({
         start: dayjs(`2000-01-01 ${r.start}`).toDate(),
         end: dayjs(`2000-01-01 ${r.end}`).toDate(),
@@ -42,7 +42,7 @@ export const Settings = () => {
 
   const handleSubmit = (values: FormValues) => {
     updateSettings({
-      frequency: values.frequency as Frequency,
+      frequency: Number(values.frequency) as Frequency,
       ranges: values.ranges.map((r) => ({
         start: dayjs(r.start).format("HH:mm"),
         end: dayjs(r.end).format("HH:mm"),

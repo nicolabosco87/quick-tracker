@@ -48,7 +48,7 @@ export const Router = () => {
         clearInterval(reminderInterval);
       }
     }
-  }, [])
+  }, [settings])
 
   useEffect((   ) => {
 

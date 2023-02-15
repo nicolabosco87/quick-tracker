@@ -1,7 +1,10 @@
+import { getAll, PhysicalPosition, PhysicalSize } from "@tauri-apps/api/window";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSnapshot } from "valtio";
 
 import { minimizeWindow } from "../lib/utils";
+import { state } from "../state/state";
 import { TrackForm } from "./TrackForm/TrackForm";
 
 // interface IFormValues {
@@ -14,6 +17,7 @@ import { TrackForm } from "./TrackForm/TrackForm";
 
 export const Track = () => {
   const navigate = useNavigate();
+  const { windowSizePosition } = useSnapshot(state);
   // const form = useForm<IFormValues>({
   //   initialValues: {
   //     track: "",
@@ -52,10 +56,23 @@ export const Track = () => {
   //   minimizeWindow();
   // };
 
-  const minimizeAndReturn = () => {
+  const minimizeAndReturn = async () => {
     minimizeWindow();
+
+    const windows = getAll();
+
+    if (windows.length > 0) {
+      const mainWindow = windows[0];
+
+      const newSize = new PhysicalSize(windowSizePosition.width, windowSizePosition.height);
+      await mainWindow.setSize(newSize);
+
+      const newPosition = new PhysicalPosition(windowSizePosition.x, windowSizePosition.y);
+      await mainWindow.setPosition(newPosition);
+    }
+
     navigate("/");
-  }
+  };
 
   return (
     <TrackForm afterTrack={minimizeAndReturn} onSkip={minimizeAndReturn} />

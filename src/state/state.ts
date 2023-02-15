@@ -1,6 +1,6 @@
 import { proxy, subscribe } from "valtio";
 import { DEFAULT_FREQUENCY } from "../consts";
-import { writeTextFile, BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
+import { writeTextFile, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 
 export const STATE_STORAGE_KEY = "tracker";
 
@@ -18,9 +18,18 @@ export type TTrack = {
   duration: Frequency;
   archived: boolean;
 };
+
+export type WindowSizePosition = {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+};
+
 export type TState = {
   trackings: TTrack[];
   settings: TSettings;
+  windowSizePosition: WindowSizePosition;
 };
 
 export type TSettings = {
@@ -30,6 +39,12 @@ export type TSettings = {
 
 export const initialState: TState = {
   trackings: [],
+  windowSizePosition: {
+    width: 800,
+    height: 600,
+    x: 200,
+    y: 200,
+  },
   settings: {
     frequency: DEFAULT_FREQUENCY,
     ranges: [
@@ -46,8 +61,8 @@ export const state = proxy<TState>(initialState);
 
 subscribe(state, async () => {
   if (loadedFromDisk) {
-    // Neutralino.filesystem.writeFile("./qts.json", JSON.stringify(state));
-    await writeTextFile('qts.json', 'file contents', { dir: BaseDirectory.AppConfig });
+    console.log("Writing", BaseDirectory.Home);
+    await writeTextFile("qts.json", JSON.stringify(state), { dir: BaseDirectory.Home });
   }
 });
 
@@ -57,9 +72,8 @@ declare module "valtio" {
 
 export const loadFromDisk = async () => {
   try {
-    // const rawData = false; await Neutralino.filesystem.readFile("./qts.json");
-    // const data = JSON.parse(rawData);
-    const rawData = await readTextFile('qts.json', { dir: BaseDirectory.AppConfig });
+    console.log("Loading", BaseDirectory.Home);
+    const rawData = await readTextFile("qts.json", { dir: BaseDirectory.Home });
     const data = JSON.parse(rawData);
 
     state.settings = data.settings ?? initialState.settings;

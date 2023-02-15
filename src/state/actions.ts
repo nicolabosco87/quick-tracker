@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Frequency, state, TSettings, TTrack } from "./state";
+import { Frequency, state, TSettings, TTrack, WindowSizePosition } from "./state";
 
 export const addTrack = (track: string, duration: Frequency) => {
   state.trackings.push({
@@ -32,3 +32,8 @@ export const editTrack = (track: TTrack) => {
 export const updateSettings = (settings: TSettings) => {
   state.settings = settings;
 };
+
+
+export const setWindowSizePosition = (windowSizePosition: WindowSizePosition) => {
+  state.windowSizePosition = windowSizePosition;
+}

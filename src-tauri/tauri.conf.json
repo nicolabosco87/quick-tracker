@@ -52,7 +52,12 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+        "https://gist.githubusercontent.com/nicolabosco87/809d9de31c6d9bb8f4c8564f06a9b768/raw/0e02ea4509872b1cce206924ca7f14ec6ef4b3e3/quick-tracker-update.json"
+      ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDFFNDA0QUVBOTYwRjdBMDEKUldRQmVnK1c2a3BBSG1VVWJsYWdtbjZzV2hCOVQzdEtpTitITFhEN3BvbmJvVUFFOHBGa1pWbEYK"
     },
     "windows": [
       {

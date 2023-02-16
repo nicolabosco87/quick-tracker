@@ -49,8 +49,9 @@ export const Router = () => {
 
           navigate("track-popup");
 
+          mainWindow.setAlwaysOnTop(true);
           mainWindow.show();
-          mainWindow.setFocus();
+          // mainWindow.setFocus();
         }
       }
     }, 60000);

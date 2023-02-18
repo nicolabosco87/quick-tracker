@@ -69,6 +69,8 @@ export const Track = () => {
 
       const newPosition = new PhysicalPosition(windowSizePosition.x, windowSizePosition.y);
       await mainWindow.setPosition(newPosition);
+
+      mainWindow.setAlwaysOnTop(false);
     }
 
     navigate("/");

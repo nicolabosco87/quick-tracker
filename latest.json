@@ -1,0 +1,11 @@
+{
+  "version": "v0.0.1",
+  "notes": "Test version",
+  "pub_date": "2023-02-18T10:23:31.543Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSHRETit6Y3ZNNGhZYXIxR3l6bDJHbnpJNDRXV2NsbC8xRjBhRTFiN0s5VlYrSTI3eHlESlJoOS9DbFJ2UWd1MjRjZWJBL21wUUdsQ2Rnam9IaG40UEFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc2NjUwMzk1CWZpbGU6cXVpY2stdHJhY2tlcl8wLjAuMV94NjRfZW4tVVMubXNpLnppcAprQlVrSnhNd2ZxZ3dSaWlOdThzeUlsVmZpUVE5SmhVZmo3ZG1PWk1VbVdGRHdDMHdSK0RGRDNHd3U1RnNMUkJTNjdaM1ZjTDFRSmRFdzBGMmFyb1NBQT09Cg==",
+      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/quick-tracker-v0.0.1/quick-tracker_0.0.1_x64_en-US.msi.zip"
+    }
+  }
+}

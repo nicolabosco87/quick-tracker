@@ -10,6 +10,10 @@ declare module "@mantine/core" {
 
 export const theme: MantineThemeOverride = {
   primaryColor: "ocean-blue",
+  defaultGradient: {
+    from: "#4CB396",
+    to: "#0E99AC",
+  },
   colors: {
     "light-green": [
       "#F7FBE9",

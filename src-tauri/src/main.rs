@@ -3,9 +3,8 @@
     windows_subsystem = "windows"
 )]
 
-use tauri::api::dialog::ask;
+use tauri::Manager;
 use tauri::{CustomMenuItem, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem};
-use tauri::{Event, Manager};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]

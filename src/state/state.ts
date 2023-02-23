@@ -1,43 +1,11 @@
 import { proxy, subscribe } from "valtio";
 import { DEFAULT_FREQUENCY } from "../consts";
 import { writeTextFile, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
+import { State } from "./types";
 
 export const STATE_STORAGE_KEY = "tracker";
 
-export type Frequency = 1 | 15 | 30 | 60;
-
-export type TRange = {
-  start: string;
-  end: string;
-};
-
-export type TTrack = {
-  id: string;
-  startTime: Date;
-  description: string;
-  duration: Frequency;
-  archived: boolean;
-};
-
-export type WindowSizePosition = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
-
-export type TState = {
-  trackings: TTrack[];
-  settings: TSettings;
-  windowSizePosition: WindowSizePosition;
-};
-
-export type TSettings = {
-  frequency: Frequency;
-  ranges: TRange[];
-};
-
-export const initialState: TState = {
+export const initialState: State = {
   trackings: [],
   windowSizePosition: {
     width: 800,
@@ -57,7 +25,7 @@ export const initialState: TState = {
 };
 
 let loadedFromDisk = false;
-export const state = proxy<TState>(initialState);
+export const state = proxy<State>(initialState);
 
 subscribe(state, async () => {
   if (loadedFromDisk) {

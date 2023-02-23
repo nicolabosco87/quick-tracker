@@ -4,11 +4,11 @@ import { IconEdit, IconTrash } from "@tabler/icons";
 import dayjs from "dayjs";
 import React, { useState } from "react";
 import { deleteTrack } from "../../../state/actions";
-import { TTrack } from "../../../state/state";
+import { Track } from "../../../state/types";
 import { TrackRowEdit } from "./TrackRowEdit";
 
 interface ITrackRowProps {
-  track: TTrack;
+  track: Track;
 }
 
 export const TrackRow = ({ track }: ITrackRowProps) => {

@@ -1,5 +1,3 @@
-import { Frequency } from "./state/state";
-
-export const appId = "electron-windows-notifications";
+import { Frequency } from "./state/types";
 
 export const DEFAULT_FREQUENCY: Frequency = 30;

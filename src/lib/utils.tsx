@@ -1,7 +1,6 @@
 import { getAll } from "@tauri-apps/api/window";
 import dayjs from "dayjs";
-import { TSettings } from "../state/state";
-import { WindowEnhanced } from "../types";
+import { Settings } from "../state/types";
 
 export const minimizeWindow = () => {
   const windows = getAll();
@@ -11,7 +10,7 @@ export const minimizeWindow = () => {
   }
 };
 
-export const calculateReminderMinutes = (settings: TSettings): string[] => {
+export const calculateReminderMinutes = (settings: Settings): string[] => {
   let checkHour = dayjs("2000-01-01 00:00:00");
 
   const minutes: string[] = [];
@@ -38,7 +37,7 @@ export const calculateReminderMinutes = (settings: TSettings): string[] => {
   return minutes;
 };
 
-export const isReminderTime = (settings: TSettings) => {
+export const isReminderTime = (settings: Settings) => {
   const nowTime = dayjs().format("HH:mm");
   const reminderMinutes = calculateReminderMinutes(settings);
   return reminderMinutes.includes(nowTime);

@@ -7,10 +7,10 @@ import React from "react";
 import * as Yup from "yup";
 import { useFrequenciesOptions } from "../../../hooks/useFrequenciesOptions";
 import { editTrack } from "../../../state/actions";
-import { Frequency, TTrack } from "../../../state/state";
+import { Frequency, Track } from "../../../state/types";
 
 interface ITrackRowEditProps {
-  track: TTrack;
+  track: Track;
   onComplete: () => void;
 }
 

@@ -1,9 +1,9 @@
-import { TSettings } from "../state/state";
+import { Settings } from "../state/types";
 import { calculateReminderMinutes } from "./utils";
 
 describe("Check schedules", () => {
   it("Should create a schedule", () => {
-    const settings: TSettings = {
+    const settings: Settings = {
       frequency: 15,
       ranges: [
         {
@@ -25,7 +25,7 @@ describe("Check schedules", () => {
   });
 
   it("Should create a composed schedule", () => {
-    const settings: TSettings = {
+    const settings: Settings = {
       frequency: 30,
       ranges: [
         {

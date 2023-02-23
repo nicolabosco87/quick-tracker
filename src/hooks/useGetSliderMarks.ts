@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useMemo } from "react";
-import { Frequency } from "../state/state";
+import { Frequency } from "../state/types";
 
 export const useGetSliderMarks = (frequency: Frequency) => {
   return useMemo(() => {

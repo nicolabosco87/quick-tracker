@@ -11,7 +11,8 @@ import { SectionTitle } from "../components/SectionTitle";
 import { DEFAULT_FREQUENCY } from "../consts";
 import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
 import { updateSettings } from "../state/actions";
-import { Frequency, state } from "../state/state";
+import { state } from "../state/state";
+import { Frequency } from "../state/types";
 interface FormValues {
   frequency: string;
   ranges: { start: Date; end: Date }[];

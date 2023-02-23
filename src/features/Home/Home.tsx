@@ -1,41 +1,31 @@
-import {
-  Accordion,
-  Container,
-  Grid,
-  Indicator,
-  MediaQuery,
-  Space,
-  Tabs,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
+import { Accordion, Grid, Indicator, Space, Tabs, Text, Title } from "@mantine/core";
 import React, { useMemo, useState } from "react";
-import { state, TTrack } from "../../state/state";
+import { state } from "../../state/state";
 
 import { Calendar } from "@mantine/dates";
+import { IconChartPie3, IconTable } from "@tabler/icons";
 import dayjs from "dayjs";
 import { useSnapshot } from "valtio";
+import { SectionTitle } from "../../components/SectionTitle";
+import { Track } from "../../state/types";
 import { TrackGraph } from "./TrackGraph/TrackGraph";
 import { TrackTable } from "./TrackTable/TrackTable";
-import { IconChartPie3, IconTable } from "@tabler/icons";
-import { SectionTitle } from "../../components/SectionTitle";
 
 export interface IDayTracks {
   day: string;
-  tracks: TTrack[];
+  tracks: Track[];
 }
 
 export const Home = () => {
   const [selectedDay, setselectedDay] = useState<Date | null>(new Date());
-  const theme = useMantineTheme();
 
   const { trackings } = useSnapshot(state);
 
+  // group trackings
   const groupedTrackings = useMemo(() => {
     const gt = new Map<string, IDayTracks>();
 
-    trackings.forEach((track: TTrack) => {
+    trackings.forEach((track: Track) => {
       const dayKey = dayjs(track.startTime).format("YYYY-MM-DD");
       const dayFormatted = dayjs(track.startTime).format("DD/MM/YYYY");
 
@@ -53,25 +43,7 @@ export const Home = () => {
     return gt;
   }, [trackings]);
 
-  const elements = useMemo(() => {
-    const el: React.ReactNode[] = [];
-
-    new Map([...groupedTrackings.entries()].sort((a, b) => (a[0] < b[0] ? 1 : -1))).forEach((dayTracks, key) => {
-      el.push(
-        <Accordion.Item value={key}>
-          <Accordion.Control>
-            <Title order={5}>{dayTracks.day}</Title>
-          </Accordion.Control>
-          <Accordion.Panel>
-            <TrackTable dayTracks={dayTracks} />
-          </Accordion.Panel>
-        </Accordion.Item>
-      );
-    });
-
-    return el;
-  }, [groupedTrackings]);
-
+  // Group trackings by day
   const dayTrackings: IDayTracks = useMemo(() => {
     const currentDayKey = dayjs(selectedDay).format("YYYY-MM-DD");
     return (
@@ -85,7 +57,7 @@ export const Home = () => {
   return (
     <>
       <SectionTitle>History</SectionTitle>
-      {elements.length === 0 && <Text>No data logged</Text>}
+      {groupedTrackings.size === 0 ? <Text>No data logged</Text> : null}
 
       <Grid gutter={15}>
         <Grid.Col span={"content"}>

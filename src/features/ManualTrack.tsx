@@ -11,7 +11,8 @@ import { SectionTitle } from "../components/SectionTitle";
 import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
 import { useGetUniqueTrackDescriptions } from "../hooks/useGetUniqueTrackDescriptions";
 import { addTrack } from "../state/actions";
-import { Frequency, state } from "../state/state";
+import { state } from "../state/state";
+import { Frequency } from "../state/types";
 
 interface IFormValues {
   track: string;

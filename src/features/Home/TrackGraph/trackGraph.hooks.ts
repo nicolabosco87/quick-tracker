@@ -6,15 +6,15 @@ export const useGetGraphColor = () => {
 
   const graphColors = useMemo(() => {
     return [
-      // colors["ocean-blue"][5],
-      // colors["light-green"][5],
+      colors["ocean-blue"][5],
       colors.orange[5],
-      colors.indigo[5],
-      colors.pink[5],
+      colors["light-green"][5],
       colors.red[5],
       colors.yellow[5],
-      colors.cyan[5],
+      colors.pink[5],
+      colors.indigo[5],
       colors.violet[5],
+      colors.cyan[5],
       colors.blue[5],
     ];
   }, [colors]);

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { Frequency, state, TSettings, TTrack, WindowSizePosition } from "./state";
+import { state } from "./state";
+import { Frequency, Settings, Track, WindowSizePosition } from "./types";
 
 export const addTrack = (track: string, duration: Frequency, startTime = new Date()) => {
   state.trackings.push({
@@ -25,11 +26,11 @@ export const deleteTrack = (id: string) => {
   state.trackings = state.trackings.filter((t) => t.id !== id);
 };
 
-export const editTrack = (track: TTrack) => {
+export const editTrack = (track: Track) => {
   state.trackings = state.trackings.map((t) => (t.id === track.id ? track : t));
 };
 
-export const updateSettings = (settings: TSettings) => {
+export const updateSettings = (settings: Settings) => {
   state.settings = settings;
 };
 

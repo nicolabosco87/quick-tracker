@@ -14,6 +14,7 @@ export const TrackTable = ({ dayTracks }: TTrackTableProps) => {
         <tr>
           <th>Description</th>
           <th>Hour</th>
+          <th>Duration</th>
           <th />
         </tr>
       </thead>

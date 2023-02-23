@@ -1,16 +1,17 @@
-import { ActionIcon, Box, Button, Container, Group, Paper, Select, Space, Text, Title } from "@mantine/core";
+import { ActionIcon, Box, Button, Group, Paper, Select, Space, Text } from "@mantine/core";
 import { TimeInput } from "@mantine/dates";
 import { useForm, yupResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { IconCheck, IconTrash } from "@tabler/icons";
 import dayjs from "dayjs";
-import React from "react";
 import uniqid from "uniqid";
 import { useSnapshot } from "valtio";
 import * as Yup from "yup";
+import { SectionTitle } from "../components/SectionTitle";
 import { DEFAULT_FREQUENCY } from "../consts";
+import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
 import { updateSettings } from "../state/actions";
-import { state, Frequency } from "../state/state";
+import { Frequency, state } from "../state/state";
 interface FormValues {
   frequency: string;
   ranges: { start: Date; end: Date }[];
@@ -28,6 +29,7 @@ const schema = Yup.object().shape({
 
 export const Settings = () => {
   const { settings } = useSnapshot(state);
+  const frequencies = useFrequenciesOptions();
 
   const { insertListItem, getInputProps, removeListItem, values, onSubmit } = useForm<FormValues>({
     initialValues: {
@@ -70,31 +72,10 @@ export const Settings = () => {
   });
 
   return (
-    <Container>
-      <Title order={3}>Settings</Title>
+    <>
+      <SectionTitle>Settings</SectionTitle>
       <form onSubmit={onSubmit(handleSubmit)}>
-        <Select
-          label="Frequency"
-          data={[
-            {
-              value: "1",
-              label: "1",
-            },
-            {
-              value: "15",
-              label: "15",
-            },
-            {
-              value: "30",
-              label: "30",
-            },
-            {
-              value: "60",
-              label: "60",
-            },
-          ]}
-          {...getInputProps("frequency")}
-        />
+        <Select label="Frequency" data={frequencies} {...getInputProps("frequency")} />
 
         <Space h={20} />
 
@@ -120,6 +101,6 @@ export const Settings = () => {
           <Button type="submit">Save</Button>
         </Group>
       </form>
-    </Container>
+    </>
   );
 };

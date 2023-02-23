@@ -2,7 +2,7 @@ import { currentMonitor, getAll, PhysicalPosition, PhysicalSize } from "@tauri-a
 import { useEffect } from "react";
 import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import { useSnapshot } from "valtio";
-import { Content } from "./components/Content";
+import { PaddedContent } from "./components/PaddedContent";
 import { Layout } from "./components/Layout";
 import { Home } from "./features/Home/Home";
 import { ManualTrack } from "./features/ManualTrack";
@@ -51,7 +51,6 @@ export const Router = () => {
 
           mainWindow.setAlwaysOnTop(true);
           mainWindow.show();
-          // mainWindow.setFocus();
         }
       }
     }, 60000);
@@ -62,37 +61,6 @@ export const Router = () => {
       }
     };
   }, [settings]);
-
-  // useEffect((   ) => {
-  // listen<string>("tauri://close-requested", (event) => {
-  //   console.log(`Got error in window ${event.windowLabel}, payload: ${event.payload}`);
-  //   const windows = getAll();
-  //   if (windows.length > 0) {
-  //     windows[0].hide();
-  //   }
-  // });
-
-  // Neutralino.events.on('windowMinimize', () => {
-  //   Neutralino.window.hide() // Hiding the window and the task bar icon
-  // })
-
-  // Neutralino.events.on('windowClose', (event: any) => {
-  //   Neutralino.window.hide() // Hiding the window instead of closing the app with Neutralino.app.exit()
-  // })
-
-  // TODO
-  // Neutralino.events.on('trayMenuItemClicked', async (event: any, menuItem: any) => {
-  //   if (event.detail.id === "quit") {
-  //     Neutralino.app.exit();
-  //   }
-
-  //   if (event.detail.id === "history") {
-  //     navigate("/");
-  //     await Neutralino.window.show();
-  //     Neutralino.window.focus();
-  //   }
-  // })
-  // }, []);
 
   return (
     <Routes>
@@ -111,9 +79,9 @@ export const Router = () => {
       <Route
         path="track-popup"
         element={
-          <Content>
+          <PaddedContent>
             <Track />
-          </Content>
+          </PaddedContent>
         }
       />
     </Routes>

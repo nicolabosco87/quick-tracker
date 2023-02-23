@@ -7,6 +7,7 @@ import React, { useCallback } from "react";
 import { useSnapshot } from "valtio";
 import { state } from "../../state/state";
 import { addTrack } from "../../state/actions";
+import { useGetUniqueTrackDescriptions } from "../../hooks/useGetUniqueTrackDescriptions";
 
 interface IFormValues {
   track: string;
@@ -30,9 +31,10 @@ export const TrackForm = ({ afterTrack, onSkip }: TrackFormProps) => {
   });
 
   const {
-    trackings,
     settings: { frequency },
   } = useSnapshot(state);
+
+  const uniqueTracksDescriptions = useGetUniqueTrackDescriptions();
 
   const addTrackAndCallback = useCallback(
     (track: string) => {
@@ -52,17 +54,10 @@ export const TrackForm = ({ afterTrack, onSkip }: TrackFormProps) => {
     [addTrackAndCallback]
   );
 
-  const uniqueTrackings: string[] = trackings.reduce((prev: string[], t) => {
-    if (prev.indexOf(t.description) < 0) {
-      prev.push(t.description);
-    }
-    return prev;
-  }, []);
-
   return (
     <>
       <SimpleGrid cols={2}>
-        {uniqueTrackings.slice(-6).map((t) => (
+        {uniqueTracksDescriptions.slice(-6).map((t) => (
           <Button fullWidth onClick={() => addTrackAndCallback(t)} key={t}>
             {t}
           </Button>
@@ -83,7 +78,7 @@ export const TrackForm = ({ afterTrack, onSkip }: TrackFormProps) => {
               Skip
             </Button>
           ) : null}
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Add Track</Button>
         </Group>
       </form>
     </>

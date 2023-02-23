@@ -11,12 +11,12 @@ use tauri::{Event, Manager};
 #[tauri::command]
 
 fn main() {
-    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
     let show = CustomMenuItem::new("show".to_string(), "Show");
+    let quit = CustomMenuItem::new("quit".to_string(), "Quit");
     let tray_menu = SystemTrayMenu::new()
-        .add_item(quit)
+        .add_item(show)
         .add_native_item(SystemTrayMenuItem::Separator)
-        .add_item(show);
+        .add_item(quit);
 
     let system_tray = SystemTray::new().with_menu(tray_menu);
 
@@ -57,6 +57,12 @@ fn main() {
                 ..
             } => {
                 println!("system tray received a double click");
+                let window = app.get_window("main").unwrap();
+                if window.is_visible().unwrap() {
+                    window.hide().unwrap();
+                } else {
+                    window.show().unwrap();
+                };
             }
             SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
                 "show" => {

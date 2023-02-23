@@ -4,11 +4,11 @@ import { TSettings } from "../state/state";
 import { WindowEnhanced } from "../types";
 
 export const minimizeWindow = () => {
-    const windows = getAll();
-    if (windows.length > 0) {
-      const mainWindow = windows[0];
-      mainWindow.hide();
-    }
+  const windows = getAll();
+  if (windows.length > 0) {
+    const mainWindow = windows[0];
+    mainWindow.hide();
+  }
 };
 
 export const calculateReminderMinutes = (settings: TSettings): string[] => {
@@ -41,8 +41,6 @@ export const calculateReminderMinutes = (settings: TSettings): string[] => {
 export const isReminderTime = (settings: TSettings) => {
   const nowTime = dayjs().format("HH:mm");
   const reminderMinutes = calculateReminderMinutes(settings);
-
-  console.log(nowTime, settings);
   return reminderMinutes.includes(nowTime);
 };
 

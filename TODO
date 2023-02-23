@@ -1,0 +1,18 @@
+
+Todo:
+✔ Add updater @done(23-02-23 15:52)
+✔ Fix table edit mode datepicker @done(23-02-23 15:52)
+✔ Change App icons @done(23-02-23 15:52)
+✔ Improve manual track (add time and duration) @done(23-02-23 15:52)
+✔ Add menu labels + change home icon @done(23-02-23 15:52)
+✔ 1 minute frequency only on dev env @done(23-02-23 15:52)
+✔ Show duration in history table @done(23-02-23 15:52)
+✔ Double click on trayIcon should show the app @done(23-02-23 15:58)
+✔ Switch tray icon menu items @done(23-02-23 15:58)
+[ ] Refactoring and code cleaning
+[ ] Add certificate
+[ ] Table edit mode: add timepicker
+[ ] automize latest.json creation https://github.com/tauri-apps/tauri/discussions/6106
+[ ] Add i18n
+[ ] Add documentation
+[ ] Add E2E tests

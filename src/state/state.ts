@@ -61,7 +61,6 @@ export const state = proxy<TState>(initialState);
 
 subscribe(state, async () => {
   if (loadedFromDisk) {
-    console.log("Writing", BaseDirectory.Home);
     await writeTextFile("qts.json", JSON.stringify(state), { dir: BaseDirectory.Home });
   }
 });
@@ -72,7 +71,6 @@ declare module "valtio" {
 
 export const loadFromDisk = async () => {
   try {
-    console.log("Loading", BaseDirectory.Home);
     const rawData = await readTextFile("qts.json", { dir: BaseDirectory.Home });
     const data = JSON.parse(rawData);
 

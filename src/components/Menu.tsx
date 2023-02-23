@@ -1,6 +1,6 @@
 import { Button, ButtonProps, Stack } from "@mantine/core";
-import { IconHome, IconPencilPlus, IconSettings } from "@tabler/icons";
-import React, { useMemo } from "react";
+import { IconListDetails, IconPencilPlus, IconSettings } from "@tabler/icons";
+import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const useMenuButtonProps = (path: string): ButtonProps => {
@@ -29,13 +29,13 @@ export const Menu = () => {
 
   return (
     <Stack align="center" justify="start">
-      <Button {...homeProps} onClick={goToHome}>
-        <IconHome />
+      <Button {...homeProps} onClick={goToHome} title="Track History" mt={10}>
+        <IconListDetails />
       </Button>
-      <Button {...trackProps} onClick={goToManualTrack}>
+      <Button {...trackProps} onClick={goToManualTrack} title="Add Track">
         <IconPencilPlus />
       </Button>
-      <Button {...settingsProps} onClick={goToSettings}>
+      <Button {...settingsProps} onClick={goToSettings} title="Settings">
         <IconSettings />
       </Button>
     </Stack>

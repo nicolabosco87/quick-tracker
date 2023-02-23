@@ -1,6 +1,5 @@
 import { AppShell, Navbar } from "@mantine/core";
-import React, { ReactNode } from "react";
-import { Content } from "./Content";
+import { ReactNode } from "react";
 import { HeadBar } from "./HeadBar";
 import { Menu } from "./Menu";
 
@@ -28,9 +27,7 @@ export const Layout = ({ children }: TLayoutProps) => (
         </Navbar>
       }
     >
-      <Content>{children}</Content>
+      {children}
     </AppShell>
-    {/* <Menu />
-    <Content>{children}</Content> */}
   </>
 );

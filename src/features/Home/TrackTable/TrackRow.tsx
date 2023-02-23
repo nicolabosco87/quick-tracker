@@ -31,6 +31,7 @@ export const TrackRow = ({ track }: ITrackRowProps) => {
     <tr key={track.startTime.toString()}>
       <td>{dayjs(track.startTime).format("HH:mm")}</td>
       <td>{track.description}</td>
+      <td>{track.duration}</td>
       <td>
         <Group position="right" spacing={5}>
           <ActionIcon variant="filled" color="ocean-blue" onClick={() => seteditMode(true)}>

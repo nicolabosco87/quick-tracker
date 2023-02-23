@@ -19,6 +19,7 @@ import { useSnapshot } from "valtio";
 import { TrackGraph } from "./TrackGraph/TrackGraph";
 import { TrackTable } from "./TrackTable/TrackTable";
 import { IconChartPie3, IconTable } from "@tabler/icons";
+import { SectionTitle } from "../../components/SectionTitle";
 
 export interface IDayTracks {
   day: string;
@@ -83,7 +84,7 @@ export const Home = () => {
 
   return (
     <>
-      <Title order={3}>History</Title>
+      <SectionTitle>History</SectionTitle>
       {elements.length === 0 && <Text>No data logged</Text>}
 
       <Grid gutter={15}>
@@ -115,7 +116,7 @@ export const Home = () => {
               <Tabs.Tab value="graph" icon={<IconChartPie3 />}>
                 Graph
               </Tabs.Tab>
-              <Tabs.Tab value="table" icon={<IconTable  />}>
+              <Tabs.Tab value="table" icon={<IconTable />}>
                 Table
               </Tabs.Tab>
             </Tabs.List>

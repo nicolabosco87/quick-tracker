@@ -9,10 +9,12 @@ Todo:
 ✔ Show duration in history table @done(23-02-23 15:52)
 ✔ Double click on trayIcon should show the app @done(23-02-23 15:58)
 ✔ Switch tray icon menu items @done(23-02-23 15:58)
-[ ] Refactoring and code cleaning
-[ ] Add certificate
-[ ] Table edit mode: add timepicker
-[ ] automize latest.json creation https://github.com/tauri-apps/tauri/discussions/6106
+✔ Refactoring and code cleaning @done(23-02-23 17:43)
 [ ] Add i18n
 [ ] Add documentation
 [ ] Add E2E tests
+[ ] Add timepicker in forms
+
+Low priority:
+[ ] Add certificate
+[ ] automize latest.json creation https://github.com/tauri-apps/tauri/discussions/6106

@@ -1,15 +1,14 @@
-import { Button, Grid, Group, Select, SelectItem } from "@mantine/core";
+import { Button, Grid, Group, Select } from "@mantine/core";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import { useForm, yupResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import { IconCheck } from "@tabler/icons";
 import dayjs from "dayjs";
-import { useState } from "react";
 import { useSnapshot } from "valtio";
 import * as Yup from "yup";
 import { SectionTitle } from "../components/SectionTitle";
+import { TrackDescriptionSelect } from "../components/TrackDescriptionSelect";
 import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
-import { useGetUniqueTrackDescriptions } from "../hooks/useGetUniqueTrackDescriptions";
 import { addTrack } from "../state/actions";
 import { state } from "../state/state";
 import { Frequency } from "../state/types";
@@ -32,15 +31,7 @@ export const ManualTrack = () => {
   const {
     settings: { frequency },
   } = useSnapshot(state);
-  const uniqueTracksDescriptions = useGetUniqueTrackDescriptions();
   const frequenciesOptions = useFrequenciesOptions();
-
-  const trackOptions: SelectItem[] = uniqueTracksDescriptions.map((t) => ({
-    value: t,
-    label: t,
-  }));
-
-  const [editableTrackOptions, seteditableTrackOptions] = useState<SelectItem[]>(trackOptions);
 
   const form = useForm<IFormValues>({
     initialValues: {
@@ -75,20 +66,7 @@ export const ManualTrack = () => {
       <form onSubmit={form.onSubmit(onSubmit)}>
         <Grid>
           <Grid.Col xs={12} sm={6} md={4} lg={3}>
-            <Select
-              creatable
-              getCreateLabel={(query) => `+ Create ${query}`}
-              onCreate={(query) => {
-                const item = { value: query, label: query };
-                seteditableTrackOptions((current) => [...current, item]);
-                return item;
-              }}
-              searchable
-              data={editableTrackOptions}
-              label="Track Description"
-              placeholder="insert description"
-              {...form.getInputProps("track")}
-            />
+            <TrackDescriptionSelect {...form.getInputProps("track")} />
           </Grid.Col>
           <Grid.Col xs={12} sm={6} md={4} lg={3}>
             <Select

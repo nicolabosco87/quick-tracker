@@ -10,6 +10,7 @@ Todo:
 ✔ Double click on trayIcon should show the app @done(23-02-23 15:58)
 ✔ Switch tray icon menu items @done(23-02-23 15:58)
 ✔ Refactoring and code cleaning @done(23-02-23 17:43)
+✔ Add searchable on Track Popup @done(23-02-27 11:56)
 ☐ Add i18n
 ☐ Add documentation
 ☐ Add E2E tests

@@ -7,7 +7,7 @@ export const useGetUniqueTrackDescriptions = (): string[] => {
 
   return useMemo(
     () =>
-      trackings.reduce((prev: string[], t) => {
+      [...trackings].reverse().reduce((prev: string[], t) => {
         if (prev.indexOf(t.description) < 0) {
           prev.push(t.description);
         }

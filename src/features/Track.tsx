@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSnapshot } from "valtio";
 import * as Yup from "yup";
+import { TrackDescriptionSelect } from "../components/TrackDescriptionSelect";
 import { useGetUniqueTrackDescriptions } from "../hooks/useGetUniqueTrackDescriptions";
 
 import { minimizeWindow } from "../lib/utils";
@@ -77,7 +78,7 @@ export const Track = () => {
   return (
     <>
       <SimpleGrid cols={2}>
-        {uniqueTracksDescriptions.slice(-6).map((t) => (
+        {uniqueTracksDescriptions.slice(0, 6).map((t) => (
           <Button fullWidth onClick={() => addTrackAndCallback(t)} key={t}>
             {t}
           </Button>
@@ -85,12 +86,7 @@ export const Track = () => {
       </SimpleGrid>
 
       <form onSubmit={form.onSubmit(onSubmit)}>
-        <TextInput
-          required
-          label="Track Description"
-          placeholder="insert description"
-          {...form.getInputProps("track")}
-        />
+        <TrackDescriptionSelect {...form.getInputProps("track")} />
 
         <Group position="apart" mt="md">
           <Button variant="outline" onClick={minimizeAndReturn}>

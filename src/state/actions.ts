@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { state } from "./state";
-import { Frequency, Settings, Track, WindowSizePosition } from "./types";
+import { Frequency, Settings, Track } from "./types";
 
 export const addTrack = (track: string, duration: Frequency, startTime = new Date()) => {
   state.trackings.push({
@@ -32,8 +32,4 @@ export const editTrack = (track: Track) => {
 
 export const updateSettings = (settings: Settings) => {
   state.settings = settings;
-};
-
-export const setWindowSizePosition = (windowSizePosition: WindowSizePosition) => {
-  state.windowSizePosition = windowSizePosition;
 };

@@ -1,15 +1,13 @@
-import { Button, Group, SimpleGrid, TextInput } from "@mantine/core";
+import { Button, Group, SimpleGrid } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
-import { getAll, PhysicalPosition, PhysicalSize } from "@tauri-apps/api/window";
+import { emit } from "@tauri-apps/api/event";
+import { getAll } from "@tauri-apps/api/window";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSnapshot } from "valtio";
 import * as Yup from "yup";
 import { TrackDescriptionSelect } from "../components/TrackDescriptionSelect";
 import { useGetUniqueTrackDescriptions } from "../hooks/useGetUniqueTrackDescriptions";
 
-import { minimizeWindow } from "../lib/utils";
-import { addTrack } from "../state/actions";
 import { state } from "../state/state";
 
 interface IFormValues {
@@ -27,9 +25,7 @@ export const Track = () => {
     },
     validate: yupResolver(schema),
   });
-  const navigate = useNavigate();
   const {
-    windowSizePosition,
     settings: { frequency },
   } = useSnapshot(state);
 
@@ -37,31 +33,21 @@ export const Track = () => {
 
   // Close window and restore size, position, route
   const minimizeAndReturn = async () => {
-    minimizeWindow();
-
     const windows = getAll();
+    const popupWindow = windows.find((w) => w.label === "popup");
 
-    if (windows.length > 0) {
-      const mainWindow = windows[0];
-
-      // Set window on stored Size and Position
-      const newSize = new PhysicalSize(windowSizePosition.width, windowSizePosition.height);
-      await mainWindow.setSize(newSize);
-
-      const newPosition = new PhysicalPosition(windowSizePosition.x, windowSizePosition.y);
-      await mainWindow.setPosition(newPosition);
-
-      // Disable window AlwaysOnTop
-      mainWindow.setAlwaysOnTop(false);
+    if (popupWindow) {
+      popupWindow?.close();
     }
-
-    navigate("/");
   };
 
   // Track and close window
   const addTrackAndCallback = useCallback(
     (track: string) => {
-      addTrack(track, frequency);
+      emit("addTrack", {
+        track,
+        frequency,
+      });
       form.reset();
       minimizeAndReturn();
     },

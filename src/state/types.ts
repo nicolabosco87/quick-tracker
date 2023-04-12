@@ -1,5 +1,17 @@
 export type Frequency = 1 | 15 | 30 | 60;
 
+export enum PopupPosition {
+  TopLeft = "TopLeft",
+  TopCenter = "TopCenter",
+  TopRight = "TopRight",
+  MiddleLeft = "MiddleLeft",
+  MiddleCenter = "MiddleCenter",
+  MiddleRight = "MiddleRight",
+  BottomLeft = "BottomLeft",
+  BottomCenter = "BottomCenter",
+  BottomRight = "BottomRight",
+}
+
 export type Range = {
   start: string;
   end: string;
@@ -13,20 +25,14 @@ export type Track = {
   archived: boolean;
 };
 
-export type WindowSizePosition = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
-
 export type State = {
+  version: string;
   trackings: Track[];
   settings: Settings;
-  windowSizePosition: WindowSizePosition;
 };
 
 export type Settings = {
   frequency: Frequency;
   ranges: Range[];
+  popupPosition: PopupPosition;
 };

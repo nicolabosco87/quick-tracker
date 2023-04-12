@@ -1,18 +1,14 @@
 import { proxy, subscribe } from "valtio";
-import { DEFAULT_FREQUENCY } from "../consts";
+import { DEFAULT_FREQUENCY, DEFAULT_POPUP_POSITION } from "../consts";
 import { writeTextFile, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
-import { State } from "./types";
+import { PopupPosition, State } from "./types";
+import { version } from "../../package.json";
 
 export const STATE_STORAGE_KEY = "tracker";
 
 export const initialState: State = {
+  version,
   trackings: [],
-  windowSizePosition: {
-    width: 800,
-    height: 600,
-    x: 200,
-    y: 200,
-  },
   settings: {
     frequency: DEFAULT_FREQUENCY,
     ranges: [
@@ -21,6 +17,7 @@ export const initialState: State = {
         end: "18:00",
       },
     ],
+    popupPosition: DEFAULT_POPUP_POSITION,
   },
 };
 
@@ -42,8 +39,9 @@ export const loadFromDisk = async () => {
     const rawData = await readTextFile("qts.json", { dir: BaseDirectory.Home });
     const data = JSON.parse(rawData);
 
-    state.settings = data.settings ?? initialState.settings;
+    state.settings = { ...initialState.settings, ...data.settings } ?? initialState.settings;
     state.trackings = data.trackings ?? initialState.trackings;
+    state.version = version; // Set last version
     loadedFromDisk = true;
   } catch (error) {
     console.error("Error while loading disk data", error);

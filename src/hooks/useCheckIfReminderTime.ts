@@ -10,19 +10,23 @@ import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import { isReminderTime } from "../lib/utils";
 import { state } from "../state/state";
+import { useGetPopupPosition } from "./useGetPopupPosition";
 
 let reminderInterval: NodeJS.Timer;
 
 export const useCheckIfReminderTime = () => {
   const { settings } = useSnapshot(state);
+  const getPopupPosition = useGetPopupPosition();
 
   useEffect(() => {
     reminderInterval = setInterval(async () => {
-      const prMonitor = await primaryMonitor();
+      // const prMonitor = await primaryMonitor();
       // const allMonitors = await availableMonitors();
       // const monitor = await currentMonitor();
 
       if (isReminderTime(settings)) {
+        const popupPosition = await getPopupPosition();
+
         const popupWindow = new WebviewWindow("popup", {
           url: "index-popup.html",
           alwaysOnTop: true,
@@ -33,18 +37,13 @@ export const useCheckIfReminderTime = () => {
           hiddenTitle: true,
           decorations: false,
           skipTaskbar: false,
-          x: prMonitor ? prMonitor?.size.width - 300 * prMonitor.scaleFactor : 0,
-          y: prMonitor ? prMonitor?.size.height - 400 * prMonitor.scaleFactor : 0,
+          x: popupPosition.x,
+          y: popupPosition.y,
         });
 
         popupWindow.once("tauri://created", () => {
-          if (prMonitor) {
-            const position = new PhysicalPosition(
-              prMonitor?.size.width - 300 * prMonitor.scaleFactor,
-              prMonitor?.size.height - 400 * prMonitor.scaleFactor
-            );
-            popupWindow.setPosition(position);
-          }
+          const position = new PhysicalPosition(popupPosition.x, popupPosition.y);
+          popupWindow.setPosition(position);
         });
       }
     }, 60000);

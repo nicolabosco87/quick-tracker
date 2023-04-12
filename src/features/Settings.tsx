@@ -12,10 +12,11 @@ import { DEFAULT_FREQUENCY } from "../consts";
 import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
 import { updateSettings } from "../state/actions";
 import { state } from "../state/state";
-import { Frequency } from "../state/types";
+import { Frequency, PopupPosition } from "../state/types";
 interface FormValues {
   frequency: string;
   ranges: { start: Date; end: Date }[];
+  popupPosition: string;
 }
 
 const schema = Yup.object().shape({
@@ -39,6 +40,7 @@ export const Settings = () => {
         start: dayjs(`2000-01-01 ${r.start}`).toDate(),
         end: dayjs(`2000-01-01 ${r.end}`).toDate(),
       })),
+      popupPosition: String(settings?.popupPosition) ?? String(),
     },
     validate: yupResolver(schema),
   });
@@ -50,6 +52,7 @@ export const Settings = () => {
         start: dayjs(r.start).format("HH:mm"),
         end: dayjs(r.end).format("HH:mm"),
       })),
+      popupPosition: values.popupPosition as PopupPosition,
     });
     showNotification({
       autoClose: 5000,
@@ -95,6 +98,51 @@ export const Settings = () => {
             </Button>
           </Group>
         </Paper>
+
+        <Space h={20} />
+
+        <Select
+          label="Popup Position"
+          data={[
+            {
+              value: PopupPosition.TopLeft,
+              label: "Top Left",
+            },
+            {
+              value: PopupPosition.TopCenter,
+              label: "Top Center",
+            },
+            {
+              value: PopupPosition.TopRight,
+              label: "Top Right",
+            },
+            {
+              value: PopupPosition.MiddleLeft,
+              label: "Middle Left",
+            },
+            {
+              value: PopupPosition.MiddleCenter,
+              label: "Middle Center",
+            },
+            {
+              value: PopupPosition.MiddleRight,
+              label: "Middle Right",
+            },
+            {
+              value: PopupPosition.BottomLeft,
+              label: "Bottom Left",
+            },
+            {
+              value: PopupPosition.BottomCenter,
+              label: "Bottom Center",
+            },
+            {
+              value: PopupPosition.BottomRight,
+              label: "Bottom Right",
+            },
+          ]}
+          {...getInputProps("popupPosition")}
+        />
 
         <Space h={20} />
 

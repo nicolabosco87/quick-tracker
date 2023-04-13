@@ -1,4 +1,4 @@
-import { Settings } from "../state/types";
+import { PopupPosition, Settings } from "../state/types";
 import { calculateReminderMinutes } from "./utils";
 
 describe("Check schedules", () => {
@@ -11,6 +11,7 @@ describe("Check schedules", () => {
           end: "13:00",
         },
       ],
+      popupPosition: PopupPosition.TopLeft,
     };
 
     const minutes = calculateReminderMinutes(settings);
@@ -37,6 +38,7 @@ describe("Check schedules", () => {
           end: "18:00",
         },
       ],
+      popupPosition: PopupPosition.TopLeft,
     };
 
     const minutes = calculateReminderMinutes(settings);

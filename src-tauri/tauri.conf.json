@@ -11,10 +11,25 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true,
+      "app": {
+        "all": true
+      },
       "fs": {
-        "all": true,
+        "readFile": true,
+        "writeFile": true,
+        "exists": true,
         "scope": ["$HOME/.quicktracker/*", "$HOME/.quicktracker", "$HOME/*"]
+      },
+      "path": {
+        "all": true
+      },
+      "window": {
+        "create": true,
+        "hide": true,
+        "close": true,
+        "show": true,
+        "setPosition": true,
+        "minimize": true
       }
     },
     "bundle": {

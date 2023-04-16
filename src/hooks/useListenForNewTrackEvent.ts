@@ -13,14 +13,17 @@ export type EventAddTrackPlayload = {
 export const useListenForNewTrackEvent = () => {
   useEffect(() => {
     const addListener = async () => {
+      if (listener) {
+        listener();
+      }
+
+      console.log("Add listener");
       listener = await listen<EventAddTrackPlayload>("addTrack", (event) => {
         addTrack(event.payload.track, event.payload.frequency);
       });
     };
 
-    if (!listener) {
-      addListener();
-    }
+    addListener();
 
     return () => {
       if (listener) {

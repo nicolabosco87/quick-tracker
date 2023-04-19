@@ -11,15 +11,19 @@ import { useSnapshot } from "valtio";
 import { isReminderTime } from "../lib/utils";
 import { state } from "../state/state";
 import { useGetPopupPosition } from "./useGetPopupPosition";
+import { useSetListenerForNewTrackEvent } from "./useSetListenerForNewTrackEvent";
 
 let reminderInterval: NodeJS.Timer;
 
 export const useCheckIfReminderTime = () => {
   const { settings } = useSnapshot(state);
   const getPopupPosition = useGetPopupPosition();
+  const setListenerForNewTrackEvent = useSetListenerForNewTrackEvent();
 
   useEffect(() => {
     reminderInterval = setInterval(async () => {
+      setListenerForNewTrackEvent();
+
       // const prMonitor = await primaryMonitor();
       // const allMonitors = await availableMonitors();
       // const monitor = await currentMonitor();

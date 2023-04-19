@@ -4,11 +4,9 @@ import { Home } from "./features/Home/Home";
 import { ManualTrack } from "./features/ManualTrack";
 import { Settings } from "./features/Settings";
 import { useCheckIfReminderTime } from "./hooks/useCheckIfReminderTime";
-import { useListenForNewTrackEvent } from "./hooks/useListenForNewTrackEvent";
 
 export const Router = () => {
   useCheckIfReminderTime();
-  useListenForNewTrackEvent();
 
   return (
     <Routes>

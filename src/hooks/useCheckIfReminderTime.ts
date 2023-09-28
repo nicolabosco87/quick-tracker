@@ -1,11 +1,4 @@
-import {
-  LogicalPosition,
-  PhysicalPosition,
-  WebviewWindow,
-  availableMonitors,
-  currentMonitor,
-  primaryMonitor,
-} from "@tauri-apps/api/window";
+import { PhysicalPosition, WebviewWindow } from "@tauri-apps/api/window";
 import { useEffect } from "react";
 import { useSnapshot } from "valtio";
 import { isReminderTime } from "../lib/utils";
@@ -13,7 +6,7 @@ import { state } from "../state/state";
 import { useGetPopupPosition } from "./useGetPopupPosition";
 import { useSetListenerForNewTrackEvent } from "./useSetListenerForNewTrackEvent";
 
-let reminderInterval: NodeJS.Timer;
+let reminderInterval: ReturnType<typeof setInterval>;
 
 export const useCheckIfReminderTime = () => {
   const { settings } = useSnapshot(state);
@@ -57,5 +50,5 @@ export const useCheckIfReminderTime = () => {
         clearInterval(reminderInterval);
       }
     };
-  }, [settings]);
+  }, [getPopupPosition, setListenerForNewTrackEvent, settings]);
 };

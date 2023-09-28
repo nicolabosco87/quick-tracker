@@ -14,6 +14,9 @@ export const theme: MantineThemeOverride = {
     from: "#4CB396",
     to: "#0E99AC",
   },
+  headings: {
+    fontWeight: 400,
+  },
   colors: {
     "light-green": [
       "#F7FBE9",

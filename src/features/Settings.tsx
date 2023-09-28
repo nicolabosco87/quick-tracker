@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Button, Group, Paper, Select, Space, Text } from "@mantine/core";
+import { ActionIcon, Box, Button, Grid, Group, Paper, Select, Space, Text } from "@mantine/core";
 import { TimeInput } from "@mantine/dates";
 import { useForm, yupResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
@@ -79,72 +79,72 @@ export const Settings = () => {
     <>
       <SectionTitle>Settings</SectionTitle>
       <form onSubmit={onSubmit(handleSubmit)}>
-        <Select label="Frequency" data={frequencies} {...getInputProps("frequency")} />
-
-        <Space h={20} />
-
-        <Text size="sm" sx={{ fontWeight: 500 }} mb={5}>
-          Ranges
-        </Text>
-        <Paper shadow="xs" p="md">
-          <Group position="apart" align="start">
-            <Box>{rangeFields}</Box>
-            <Button
-              color="green"
-              variant="light"
-              onClick={() => insertListItem("ranges", { name: "", active: false, key: uniqid() })}
-            >
-              Add Range
-            </Button>
-          </Group>
-        </Paper>
-
-        <Space h={20} />
-
-        <Select
-          label="Popup Position"
-          data={[
-            {
-              value: PopupPosition.TopLeft,
-              label: "Top Left",
-            },
-            {
-              value: PopupPosition.TopCenter,
-              label: "Top Center",
-            },
-            {
-              value: PopupPosition.TopRight,
-              label: "Top Right",
-            },
-            {
-              value: PopupPosition.MiddleLeft,
-              label: "Middle Left",
-            },
-            {
-              value: PopupPosition.MiddleCenter,
-              label: "Middle Center",
-            },
-            {
-              value: PopupPosition.MiddleRight,
-              label: "Middle Right",
-            },
-            {
-              value: PopupPosition.BottomLeft,
-              label: "Bottom Left",
-            },
-            {
-              value: PopupPosition.BottomCenter,
-              label: "Bottom Center",
-            },
-            {
-              value: PopupPosition.BottomRight,
-              label: "Bottom Right",
-            },
-          ]}
-          {...getInputProps("popupPosition")}
-        />
-
-        <Space h={20} />
+        <Grid gutter={16} mb={20}>
+          <Grid.Col md={6}>
+            <Select label="Frequency" data={frequencies} {...getInputProps("frequency")} />
+          </Grid.Col>
+          <Grid.Col md={6}>
+            <Select
+              label="Popup Position"
+              data={[
+                {
+                  value: PopupPosition.TopLeft,
+                  label: "Top Left",
+                },
+                {
+                  value: PopupPosition.TopCenter,
+                  label: "Top Center",
+                },
+                {
+                  value: PopupPosition.TopRight,
+                  label: "Top Right",
+                },
+                {
+                  value: PopupPosition.MiddleLeft,
+                  label: "Middle Left",
+                },
+                {
+                  value: PopupPosition.MiddleCenter,
+                  label: "Middle Center",
+                },
+                {
+                  value: PopupPosition.MiddleRight,
+                  label: "Middle Right",
+                },
+                {
+                  value: PopupPosition.BottomLeft,
+                  label: "Bottom Left",
+                },
+                {
+                  value: PopupPosition.BottomCenter,
+                  label: "Bottom Center",
+                },
+                {
+                  value: PopupPosition.BottomRight,
+                  label: "Bottom Right",
+                },
+              ]}
+              {...getInputProps("popupPosition")}
+            />
+          </Grid.Col>
+          <Grid.Col md={6}>
+            <Text size="sm" sx={{ fontWeight: 500 }} mb={5}>
+              Ranges
+            </Text>
+            <Paper shadow="xs" p="md">
+              <Group position="apart" align="start">
+                <Box>{rangeFields}</Box>
+                <Button
+                  color="green"
+                  variant="light"
+                  onClick={() => insertListItem("ranges", { name: "", active: false, key: uniqid() })}
+                >
+                  Add Range
+                </Button>
+              </Group>
+            </Paper>
+          </Grid.Col>
+        </Grid>
 
         <Group position="right">
           <Button type="submit">Save</Button>

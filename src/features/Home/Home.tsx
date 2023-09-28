@@ -1,12 +1,13 @@
-import { Accordion, Grid, Indicator, Space, Tabs, Text, Title } from "@mantine/core";
-import React, { useMemo, useState } from "react";
+import { ActionIcon, Box, Divider, Grid, Group, Indicator, Space, Tabs, Text } from "@mantine/core";
+import { useMemo, useState } from "react";
 import { state } from "../../state/state";
 
 import { Calendar } from "@mantine/dates";
-import { IconChartPie3, IconTable } from "@tabler/icons";
+import { IconCalendarEvent, IconChartPie3, IconChevronLeft, IconChevronRight, IconTable } from "@tabler/icons";
 import dayjs from "dayjs";
 import { useSnapshot } from "valtio";
 import { SectionTitle } from "../../components/SectionTitle";
+import { localeDate } from "../../lib/i18n";
 import { Track } from "../../state/types";
 import { TrackGraph } from "./TrackGraph/TrackGraph";
 import { TrackTable } from "./TrackTable/TrackTable";
@@ -54,13 +55,32 @@ export const Home = () => {
     );
   }, [groupedTrackings, selectedDay]);
 
+  const setToday = () => setselectedDay(new Date());
+  const setPreviousDay = () => setselectedDay(dayjs(selectedDay).subtract(1, "day").toDate());
+  const setNextDay = () => setselectedDay(dayjs(selectedDay).add(1, "day").toDate());
+
   return (
     <>
-      <SectionTitle>History</SectionTitle>
+      <SectionTitle>Track History {dayTrackings.day}</SectionTitle>
       {groupedTrackings.size === 0 ? <Text>No data logged</Text> : null}
 
-      <Grid gutter={15}>
+      <Grid gutter={15} columns={24}>
         <Grid.Col span={"content"}>
+          <Group>
+            <ActionIcon onClick={setPreviousDay} variant="transparent" color="ocean-blue" size="lg">
+              <IconChevronLeft />
+            </ActionIcon>
+            <Box sx={{ flex: 1 }}>{selectedDay && localeDate(selectedDay)}</Box>
+            <ActionIcon onClick={setToday} variant="transparent" color="ocean-blue" size="lg">
+              <IconCalendarEvent />
+            </ActionIcon>
+            <ActionIcon onClick={setNextDay} variant="transparent" color="ocean-blue" size="lg">
+              <IconChevronRight />
+            </ActionIcon>
+          </Group>
+
+          <Space h={10} />
+
           <Calendar
             value={selectedDay}
             onChange={setselectedDay}
@@ -79,10 +99,10 @@ export const Home = () => {
             }}
           />
         </Grid.Col>
+        <Grid.Col span={1} sx={{ justifyContent: "center", display: "flex" }}>
+          <Divider orientation="vertical" sx={{ height: "100%" }} />
+        </Grid.Col>
         <Grid.Col span="auto">
-          <Title order={4}>{dayTrackings.day}</Title>
-          <Space h={10} />
-
           <Tabs defaultValue="graph">
             <Tabs.List>
               <Tabs.Tab value="graph" icon={<IconChartPie3 />}>

@@ -1,0 +1,4 @@
+packages/*/*/src/generated
+packages/*/*/src/types/generated
+packages/*/*/src/mockServer
+packages/*/*/cypress

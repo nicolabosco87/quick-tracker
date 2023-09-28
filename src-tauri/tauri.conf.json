@@ -29,7 +29,11 @@
         "close": true,
         "show": true,
         "setPosition": true,
-        "minimize": true
+        "minimize": true,
+        "maximize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
       }
     },
     "bundle": {
@@ -79,7 +83,8 @@
         "height": 600,
         "title": "Quick Tracker",
         "resizable": true,
-        "width": 800
+        "width": 800,
+        "decorations": false
       }
     ]
   }

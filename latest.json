@@ -1,19 +1,19 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "notes": "See the assets to download and install this version.",
-  "pub_date": "2024-03-26T11:18:00.845Z",
+  "pub_date": "2024-03-26T11:59:07.547Z",
   "platforms": {
+    "darwin-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSGpVdVJsUWFhR3VSSm9WMFFtUmdyV0dzLzhScEpxczRMSGQxcUtaYUVYUTZrclNOekJsdEdKSHo4aHZRa0hxMWh0dWNwRjFrY2x2M1MzWXpBMWZsU3c0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExNDU0MjAwCWZpbGU6cXVpY2stdHJhY2tlci5hcHAudGFyLmd6Ci9XZEJPU1AzTFd5YXh1SDNKMzZIV1BkMG5PNGRrWHRGTVJQeVlBMi9ZRjhvU2dFWHdqMVUvZ1NoSngwTVBiM3pxUk1Sa25nRURUZm5uRWdWYkQvRkJRPT0K",
+      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/v0.2.1/quick-tracker_x64.app.tar.gz"
+    },
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSG1MWjJxY3hJVDYzUzh6VktSRmE3ajc2enp0S3c1MFdWd0FGWVJDR3JTMmtlaytkMUUvSHQ5YVlKSHZCbG1NVEVSOVMzbzFicG9BL3lYVFEzSFNiM1F3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExNDUxNzU5CWZpbGU6cXVpY2stdHJhY2tlcl8wLjIuMF9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKK3R1eHFXRHRheC9aWmZXY21yUDNERm9ybkZUbGNNbEtoeDhTaDk3REZHRGplWUtJMmZuRTVSV3VZcHE4eUcwTzFKUlVldE5oclJDQ1R5U3JZeXl2QUE9PQo=",
-      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/v0.2.0/quick-tracker_0.2.0_amd64.AppImage.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSGoyalJpdmZtaVM0YjR3OGJJNzh3ZVZXTEg0R2ZWeW1sQXJEbFVIVnQ1MStaeEZuMFJuOElOVUpTcmVTL2l5QU5qc3hLVTh4SUxya1VGSjh2ZjhSZ3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExNDU0MjQxCWZpbGU6cXVpY2stdHJhY2tlcl8wLjIuMV9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKVmRSVXNUNXRVT01mK3NZalREaTBaaFlVMjFUY0dGZW1sQjg1amdQVUR4N0p4dGw5cTRhcjIzSjhLTXo5VlYvWUxPNWt3MlA0elhXdkMvWlFNenViRHc9PQo=",
+      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/v0.2.1/quick-tracker_0.2.1_amd64.AppImage.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSGw0MzljVzhXVEthMXZqMjNsRW5PWXJlcmZwdFdUNm9nSjRKbHBHSlBRLzdLZmE2QXBoSzVFalpLbk40KzlQZ2ZKeWx3K3g2bFVOUWJvbG1RWEg0M2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExNDUxNzk1CWZpbGU6cXVpY2stdHJhY2tlcl8wLjIuMF94NjRfZW4tVVMubXNpLnppcApwcThTVVFCUnpqdXV5cnVJNFIwMzM0QTVmRFBYcHJKaHFrcTJCN3V6dWFxRCt2REdhOFpDVUo4K0gvTERPSlU5NXVYaGlPWmhvUTVvMk1FdEtEakVEZz09Cg==",
-      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/v0.2.0/quick-tracker_0.2.0_x64_en-US.msi.zip"
-    },
-    "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSHNDaEFzWEEvWHFpUllVV3JkeVd2TG42VEVjcVRMbFNUNHQ3R0w2VkdvRnRpNElpSDVsMWlUdzVNQ3NSSjgyMUZBSjNBSHNOQll1RVpMdWp3TGt2MGdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExNDUxODc4CWZpbGU6cXVpY2stdHJhY2tlci5hcHAudGFyLmd6CkpqbEpvRG9tNzdtcGJuOW91aTM5US8vWDFGNzM2YkZDek9vS3pPaUx2YVY4cnJCUmdNKzJsOGVETUwzVVRWYm1pcGZmeVdvQ2NHUlR4d3hBS3pzYkRBPT0K",
-      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/v0.2.0/quick-tracker_x64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRQmVnK1c2a3BBSHJyZkdmdXhhb2xsZFNKT3gwNXVpR0cvaEI0OTlCSFMrR09uNG5LV3hSOGc4SFhGclR2U1ZsTG5lRFNJZGM5ZnZvQXFGWWppM3lCQWxDK00xQVkzdXdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzExNDU0MzQ0CWZpbGU6cXVpY2stdHJhY2tlcl8wLjIuMV94NjRfZW4tVVMubXNpLnppcAo0cFo4Rndlb09rdkg2MHRpWmJ1MEMxbFRaYXNYL1o5TUhsQ0x1bVN5UjhhdEJXSDJublJrRXZIbWxoZTlOWWZVSGxhaElWOGl2TU1zZUxiV3RiM01EZz09Cg==",
+      "url": "https://github.com/nicolabosco87/quick-tracker/releases/download/v0.2.1/quick-tracker_0.2.1_x64_en-US.msi.zip"
     }
   }
 }

@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Button, Grid, Group, Paper, Select, Space, Text } from "@mantine/core";
+import { ActionIcon, Box, Button, Checkbox, Grid, Group, Paper, Select, Switch, Text } from "@mantine/core";
 import { TimeInput } from "@mantine/dates";
 import { useForm, yupResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
@@ -12,11 +12,13 @@ import { DEFAULT_FREQUENCY } from "../consts";
 import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
 import { updateSettings } from "../state/actions";
 import { state } from "../state/state";
-import { Frequency, PopupPosition } from "../state/types";
+import { ActiveDay, Frequency, PopupPosition } from "../state/types";
 interface FormValues {
   frequency: string;
   ranges: { start: Date; end: Date }[];
   popupPosition: string;
+  activeDays: string[];
+  temporaryDisabled: boolean;
 }
 
 const schema = Yup.object().shape({
@@ -40,7 +42,9 @@ export const Settings = () => {
         start: dayjs(`2000-01-01 ${r.start}`).toDate(),
         end: dayjs(`2000-01-01 ${r.end}`).toDate(),
       })),
+      activeDays: settings.activeDays,
       popupPosition: String(settings?.popupPosition) ?? String(),
+      temporaryDisabled: settings.temporaryDisabled,
     },
     validate: yupResolver(schema),
   });
@@ -52,7 +56,9 @@ export const Settings = () => {
         start: dayjs(r.start).format("HH:mm"),
         end: dayjs(r.end).format("HH:mm"),
       })),
+      activeDays: values.activeDays as ActiveDay[],
       popupPosition: values.popupPosition as PopupPosition,
+      temporaryDisabled: values.temporaryDisabled,
     });
     showNotification({
       autoClose: 5000,
@@ -143,6 +149,32 @@ export const Settings = () => {
                 </Button>
               </Group>
             </Paper>
+          </Grid.Col>
+
+          <Grid.Col md={6}>
+            <Checkbox.Group orientation="vertical" label="Active days" withAsterisk {...getInputProps("activeDays")}>
+              <Checkbox value={ActiveDay.Sunday} label="Sunday" />
+              <Checkbox value={ActiveDay.Monday} label="Monday" />
+              <Checkbox value={ActiveDay.Tuesday} label="Tuesday" />
+              <Checkbox value={ActiveDay.Wednesday} label="Wednesday" />
+              <Checkbox value={ActiveDay.Thursday} label="Thuersday" />
+              <Checkbox value={ActiveDay.Friday} label="Friday" />
+              <Checkbox value={ActiveDay.Saturday} label="Saturday" />
+            </Checkbox.Group>
+          </Grid.Col>
+        </Grid>
+
+        <Grid>
+          <Grid.Col md={6}>
+            <Text size="sm" sx={{ fontWeight: 500 }} mb={5}>
+              Disable temporary?
+            </Text>
+            <Switch
+              label="This will disabled all popups"
+              color="red"
+              {...getInputProps("temporaryDisabled")}
+              defaultChecked={settings.temporaryDisabled}
+            />
           </Grid.Col>
         </Grid>
 

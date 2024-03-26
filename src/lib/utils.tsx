@@ -1,6 +1,6 @@
 import { getAll } from "@tauri-apps/api/window";
 import dayjs from "dayjs";
-import { Settings } from "../state/types";
+import { ActiveDay, Settings } from "../state/types";
 
 export const minimizeWindow = () => {
   const windows = getAll();
@@ -38,6 +38,12 @@ export const calculateReminderMinutes = (settings: Settings): string[] => {
 };
 
 export const isReminderTime = (settings: Settings) => {
+  const nowDay = String(dayjs().get("day")) as ActiveDay;
+
+  if (!settings.activeDays.includes(nowDay)) {
+    return false;
+  }
+
   const nowTime = dayjs().format("HH:mm");
   const reminderMinutes = calculateReminderMinutes(settings);
   return reminderMinutes.includes(nowTime);

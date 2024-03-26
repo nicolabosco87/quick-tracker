@@ -11,7 +11,9 @@ describe("Check schedules", () => {
           end: "13:00",
         },
       ],
+      activeDays: [],
       popupPosition: PopupPosition.TopLeft,
+      temporaryDisabled: false,
     };
 
     const minutes = calculateReminderMinutes(settings);
@@ -38,7 +40,9 @@ describe("Check schedules", () => {
           end: "18:00",
         },
       ],
+      activeDays: [],
       popupPosition: PopupPosition.TopLeft,
+      temporaryDisabled: false,
     };
 
     const minutes = calculateReminderMinutes(settings);

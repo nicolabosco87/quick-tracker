@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
-import { AppShell, Box, Navbar } from "@mantine/core";
+import { Alert, AppShell, Box, Navbar } from "@mantine/core";
 import { appWindow } from "@tauri-apps/api/window";
-import { ReactNode, useLayoutEffect } from "react";
+import { ReactNode, useLayoutEffect, useState } from "react";
 import { useIsDevice } from "../hooks/mediaHooks";
 import { Menu } from "./Menu";
+import { useSnapshot } from "valtio";
+import { state } from "../state/state";
 
 type TLayoutProps = {
   children: ReactNode;
@@ -12,6 +14,9 @@ type TLayoutProps = {
 export const Layout = ({ children }: TLayoutProps) => {
   const isDevice = useIsDevice();
 
+  const {
+    settings: { temporaryDisabled },
+  } = useSnapshot(state);
   const TitleBar = styled.div`
     height: 30px;
     background: ${(theme) => `${theme.theme.colors["ocean-blue"][5]};`}
@@ -74,7 +79,15 @@ export const Layout = ({ children }: TLayoutProps) => {
           </Navbar>
         }
       >
-        <Box pt={30}>{children}</Box>
+        <Box pt={30}>
+          {temporaryDisabled ? (
+            <Alert mb={20} color="red">
+              Quick Tracker currently disabled!
+            </Alert>
+          ) : null}
+
+          {children}
+        </Box>
       </AppShell>
     </>
   );

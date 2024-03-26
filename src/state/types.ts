@@ -12,6 +12,16 @@ export enum PopupPosition {
   BottomRight = "BottomRight",
 }
 
+export enum ActiveDay {
+  Sunday = "0",
+  Monday = "1",
+  Tuesday = "2",
+  Wednesday = "3",
+  Thursday = "4",
+  Friday = "5",
+  Saturday = "6",
+}
+
 export type Range = {
   start: string;
   end: string;
@@ -35,4 +45,6 @@ export type Settings = {
   frequency: Frequency;
   ranges: Range[];
   popupPosition: PopupPosition;
+  activeDays: ActiveDay[];
+  temporaryDisabled: boolean;
 };

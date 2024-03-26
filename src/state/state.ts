@@ -1,8 +1,8 @@
+import { BaseDirectory, readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import { proxy, subscribe } from "valtio";
-import { DEFAULT_FREQUENCY, DEFAULT_POPUP_POSITION } from "../consts";
-import { writeTextFile, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
-import { PopupPosition, State } from "./types";
 import { version } from "../../package.json";
+import { DEFAULT_FREQUENCY, DEFAULT_POPUP_POSITION } from "../consts";
+import { ActiveDay, State } from "./types";
 
 export const STATE_STORAGE_KEY = "tracker";
 
@@ -18,6 +18,8 @@ export const initialState: State = {
       },
     ],
     popupPosition: DEFAULT_POPUP_POSITION,
+    activeDays: [ActiveDay.Monday, ActiveDay.Tuesday, ActiveDay.Wednesday, ActiveDay.Thursday, ActiveDay.Friday],
+    temporaryDisabled: false,
   },
 };
 

@@ -40,6 +40,10 @@ export const calculateReminderMinutes = (settings: Settings): string[] => {
 export const isReminderTime = (settings: Settings) => {
   const nowDay = String(dayjs().get("day")) as ActiveDay;
 
+  if (settings.temporaryDisabled) {
+    return false;
+  }
+
   if (!settings.activeDays.includes(nowDay)) {
     return false;
   }

@@ -5,6 +5,7 @@ describe("Check schedules", () => {
   it("Should create a schedule", () => {
     const settings: Settings = {
       frequency: 15,
+      maxSuggestions: 6,
       ranges: [
         {
           start: "10:00",
@@ -30,6 +31,7 @@ describe("Check schedules", () => {
   it("Should create a composed schedule", () => {
     const settings: Settings = {
       frequency: 30,
+      maxSuggestions: 6,
       ranges: [
         {
           start: "09:00",

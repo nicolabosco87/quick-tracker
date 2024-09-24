@@ -1,4 +1,16 @@
-import { ActionIcon, Box, Button, Checkbox, Grid, Group, Paper, Select, Switch, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Checkbox,
+  Grid,
+  Group,
+  NumberInput,
+  Paper,
+  Select,
+  Switch,
+  Text,
+} from "@mantine/core";
 import { TimeInput } from "@mantine/dates";
 import { useForm, yupResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
@@ -8,13 +20,14 @@ import uniqid from "uniqid";
 import { useSnapshot } from "valtio";
 import * as Yup from "yup";
 import { SectionTitle } from "../components/SectionTitle";
-import { DEFAULT_FREQUENCY } from "../consts";
+import { DEFAULT_FREQUENCY, DEFAULT_MAX_SUGGESTIONS } from "../consts";
 import { useFrequenciesOptions } from "../hooks/useFrequenciesOptions";
 import { updateSettings } from "../state/actions";
 import { state } from "../state/state";
 import { ActiveDay, Frequency, PopupPosition } from "../state/types";
 interface FormValues {
   frequency: string;
+  maxSuggestions: number;
   ranges: { start: Date; end: Date }[];
   popupPosition: string;
   activeDays: string[];
@@ -38,6 +51,7 @@ export const Settings = () => {
   const { insertListItem, getInputProps, removeListItem, values, onSubmit } = useForm<FormValues>({
     initialValues: {
       frequency: String(settings?.frequency) ?? String(DEFAULT_FREQUENCY),
+      maxSuggestions: settings?.maxSuggestions ?? DEFAULT_MAX_SUGGESTIONS,
       ranges: settings?.ranges.map((r) => ({
         start: dayjs(`2000-01-01 ${r.start}`).toDate(),
         end: dayjs(`2000-01-01 ${r.end}`).toDate(),
@@ -52,6 +66,7 @@ export const Settings = () => {
   const handleSubmit = (values: FormValues) => {
     updateSettings({
       frequency: Number(values.frequency) as Frequency,
+      maxSuggestions: Number(values.maxSuggestions),
       ranges: values.ranges.map((r) => ({
         start: dayjs(r.start).format("HH:mm"),
         end: dayjs(r.end).format("HH:mm"),
@@ -88,6 +103,9 @@ export const Settings = () => {
         <Grid gutter={16} mb={20}>
           <Grid.Col md={6}>
             <Select label="Frequency" data={frequencies} {...getInputProps("frequency")} />
+          </Grid.Col>
+          <Grid.Col md={6}>
+            <NumberInput label="Maximum suggestions" {...getInputProps("maxSuggestions")} min={1} />
           </Grid.Col>
           <Grid.Col md={6}>
             <Select

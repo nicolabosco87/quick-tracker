@@ -43,6 +43,7 @@ export type State = {
 
 export type Settings = {
   frequency: Frequency;
+  maxSuggestions: number;
   ranges: Range[];
   popupPosition: PopupPosition;
   activeDays: ActiveDay[];

@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { useFrequenciesOptions } from "../../../hooks/useFrequenciesOptions";
 import { editTrack } from "../../../state/actions";
 import { Frequency, Track } from "../../../state/types";
+import { TrackDescriptionSelect } from "../../../components/TrackDescriptionSelect";
 
 interface ITrackRowEditProps {
   track: Track;
@@ -58,7 +59,7 @@ export const TrackRowEdit = ({ track, onComplete }: ITrackRowEditProps) => {
         <TimeInput {...getInputProps("startTime")} />
       </td>
       <td>
-        <TextInput {...getInputProps("description")} />
+        <TrackDescriptionSelect {...getInputProps("description")} />
       </td>
       <td>
         <Select

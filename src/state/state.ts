@@ -1,7 +1,7 @@
 import { BaseDirectory, readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import { proxy, subscribe } from "valtio";
 import { version } from "../../package.json";
-import { DEFAULT_FREQUENCY, DEFAULT_POPUP_POSITION } from "../consts";
+import { DEFAULT_FREQUENCY, DEFAULT_MAX_SUGGESTIONS, DEFAULT_POPUP_POSITION } from "../consts";
 import { ActiveDay, State } from "./types";
 
 export const STATE_STORAGE_KEY = "tracker";
@@ -11,6 +11,7 @@ export const initialState: State = {
   trackings: [],
   settings: {
     frequency: DEFAULT_FREQUENCY,
+    maxSuggestions: DEFAULT_MAX_SUGGESTIONS,
     ranges: [
       {
         start: "09:00",

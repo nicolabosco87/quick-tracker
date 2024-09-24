@@ -1,4 +1,4 @@
-import { Button, Group, SimpleGrid } from "@mantine/core";
+import { Button, Group, SimpleGrid, Tooltip } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import { emit } from "@tauri-apps/api/event";
 import { getAll } from "@tauri-apps/api/window";
@@ -26,7 +26,7 @@ export const Track = () => {
     validate: yupResolver(schema),
   });
   const {
-    settings: { frequency },
+    settings: { frequency, maxSuggestions },
   } = useSnapshot(state);
 
   const uniqueTracksDescriptions = useGetUniqueTrackDescriptions();
@@ -64,10 +64,12 @@ export const Track = () => {
   return (
     <>
       <SimpleGrid cols={2}>
-        {uniqueTracksDescriptions.slice(0, 6).map((t) => (
-          <Button fullWidth onClick={() => addTrackAndCallback(t)} key={t}>
-            {t}
-          </Button>
+        {uniqueTracksDescriptions.slice(0, maxSuggestions).map((t) => (
+          <Tooltip label={t} key={t} openDelay={1000}>
+            <Button fullWidth onClick={() => addTrackAndCallback(t)}>
+              {t}
+            </Button>
+          </Tooltip>
         ))}
       </SimpleGrid>
 
